@@ -1,7 +1,5 @@
-#include <iostream>
-#include <ctime>///********************************
-#include <ratio>//Estas tres librerias nos ayudan a mirar y trabajar con la hora del computador en tiempo actual.
-#include <chrono>//*********************************
+
+#include "AVL.hpp"
 using namespace std;
 
 
