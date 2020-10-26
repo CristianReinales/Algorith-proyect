@@ -18,16 +18,15 @@ bst<keytype>::bst(const bst &rhs){
 
 
 /*Setters*/
-
 template<typename keytype>//PRIVADO:en el promer if revisa si el arbol esta vacio, si esta vacio crea un nodo nuevo
 void bst<keytype>::insert(bstNode* &root, const keytype& date, const string& msg){
-    if(root == nullptr){
-        root = new bstNode;
-        root->date = date;
-        root->msg = msg;
+    if(root == nullptr){// revisa si esta vacio el nodo
+        root = new bstNode;// Crea un nuevo nodo
+        root->date = date;// Le asigna la fecha como la llave
+        root->msg = msg;// Le asigna el mensaje como valor
         root->left = root->right = nullptr;
         // root->parent = findparent(tree, key);
-        count++;
+        count++;// el conteo del arbol se aumenta en 1
     }
     else{
         if( root->date != date){
