@@ -38,6 +38,10 @@ class bst{
   public:
     bst(); //**
     bst(const bst &rhs);  //**
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1dab2bd7c666c94735b1aca24a87c8e76d238f54
 
     void remove(keytype date);
     bool empty(void) const; //**
