@@ -38,7 +38,6 @@ class bst{
   public:
     bst(); //**
     bst(const bst &rhs);  //**
-    ~bst();
 
     void remove(keytype date);
     bool empty(void) const; //**

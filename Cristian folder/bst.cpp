@@ -19,7 +19,7 @@ bst<keytype>::bst(const bst &rhs){
 
 /*Setters*/
 
-template<typename keytype>//PRIVADO
+template<typename keytype>//PRIVADO:en el promer if revisa si el arbol esta vacio, si esta vacio crea un nodo nuevo
 void bst<keytype>::insert(bstNode* &root, const keytype& date, const string& msg){
     if(root == nullptr){
         root = new bstNode;

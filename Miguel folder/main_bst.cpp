@@ -1,5 +1,4 @@
 #include "bst.hpp"
-#aqui modifique 
 using namespace std;
 
 int main(){
@@ -7,13 +6,13 @@ int main(){
   cout<<boolalpha;
 
   bst<int> tree;
-  tree.insert(12);
-  tree.insert(69);
-  tree.insert(-12);
-  tree.insert(1);
-  tree.insert(7);
-  tree.insert(6);
-  tree.insert(-20);
+  tree.insert(12,"hola");
+  tree.insert(69,"nico");
+  tree.insert(-12,"miguel");
+  tree.insert(1,"christian");
+  tree.insert(7,"nose");
+  tree.insert(6,"sera");
+  tree.insert(-20,"proyecto");
 
 
 

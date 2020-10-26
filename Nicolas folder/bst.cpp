@@ -18,50 +18,48 @@ bst<keytype>::bst(const bst &rhs){
 
 
 /*Setters*/
-template <typename keytype>//PRIVADO
-void bst<keytype>::insert(bstNode* &root, const keytype& key,string& m){
+
+template<typename keytype>//PRIVADO:en el promer if revisa si el arbol esta vacio, si esta vacio crea un nodo nuevo
+void bst<keytype>::insert(bstNode* &root, const keytype& date, const string& msg){
     if(root == nullptr){
         root = new bstNode;
-        root->key = key;
+        root->date = date;
+        root->msg = msg;
         root->left = root->right = nullptr;
-        root->m=m;
         // root->parent = findparent(tree, key);
         count++;
     }
     else{
-        if( root->key != key){
-          if( root-> key < key) //pone el nodo de la derecha
-              insert(root->right, key,m);
+        if( root->date != date){
+          if( root->date < date) //pone el nodo de la derecha
+            insert(root->right, date, msg);
           else                  //pone el nodo de la izquierda
-              insert(root->left, key,m);
+            insert(root->left, date, msg);
         }
     }
 }
 
-template <typename keytype>// PUBLICO
-void bst<keytype>::insert(const keytype &key,string &m){
-    insert(tree,key,m);
+template<typename keytype>// PUBLICO
+void bst<keytype>::insert(const keytype& date,const string& msg){
+    insert(tree, date, msg);
 }
 
 
 template <typename keytype>  //PRIVADO
-typename bst<keytype>::bstNode* bst<keytype>::find(bstNode* root, keytype key)const{   //ese typename está diciendo que trate a bst<keytype>::bstNode* como un tipo
+string bst<keytype>::find(bstNode* root, keytype date)const{   //ese typename está diciendo que trate a bst<keytype>::bstNode* como un tipo
     if(root==nullptr) return nullptr;
-    if(root->key == key) return root;
-    if(root->key < key){
-        return find(root->right, key);
+    if(root->date == date) return root->msg;
+    if(root->date < date){
+        return find(root->right, date);
 
     }else{
-        return find(root->left, key);
+        return find(root->left, date);
     }
 }
 
-
 template <typename keytype>//PUBLICO
- string bst<keytype>::find(keytype key)const{
-      bstNode *t= find(tree,key);
-      return t->m;
-
+void bst<keytype>::find(keytype date)const{
+    cout<<find(tree,date)<<endl;
 }
 
 template <typename keytype>//PRIVADO
@@ -69,7 +67,7 @@ void bst<keytype>::display(bstNode* root, ostream& out)const{ // hacer la prueba
 
     if (root != nullptr){
         display(root->left, out);
-        out<<root->key<<endl;
+        out<<root->date<<" ==> "<< root->msg<<endl;
         display(root->right, out  );
     }
 }
@@ -97,17 +95,17 @@ typename bst<keytype>::bstNode* bst<keytype>::max(bstNode* root) const{
 }
 
 template <typename keytype>//PREDECESSOR
-typename bst<keytype>::bstNode* bst<keytype>::predecessor(bstNode* root) const{
+typename bst<keytype>::bstNode* bst<keytype>::predecessor(bstNode* root) const{//encontrar predecesor
   if(root == nullptr) return nullptr;
   if(root->left != nullptr) return max(root->left);
   else{
     bstNode* temp_tree = nullptr;
     bstNode* temp_tree_2 = tree;
     while(temp_tree_2 != nullptr){
-      if(temp_tree_2->key < root->key){
+      if(temp_tree_2->date < root->date){
         temp_tree = temp_tree_2;
         temp_tree_2 = temp_tree_2->right;
-      }else if(temp_tree_2 > root->key){
+      }else if(temp_tree_2 > root->date){
         temp_tree_2 = temp_tree_2->left;
       }else{
         break;
@@ -119,22 +117,22 @@ typename bst<keytype>::bstNode* bst<keytype>::predecessor(bstNode* root) const{
 
 template <typename keytype>
 typename bst<keytype>::bstNode* bst<keytype>::successor(bstNode* root) const{
-  if(root == nullptr) return nullptr;
-  if(root->right != nullptr) return min(root->right);
+  if(root == nullptr) return nullptr;//mira si esta vacio si si returna nullptr
+  if(root->right != nullptr) return min(root->right);//luego si el nodo tiene otro nodo en right, si tiene algo me va a retornar el minimo del nodo de la derecha
   else{
-    bstNode* temp_tree = nullptr;
-    bstNode* temp_tree_2 = tree;
-    while(temp_tree_2 != nullptr){
-      if(temp_tree_2->key < root->key){
-        temp_tree_2 = temp_tree_2->right;
-      }else if(temp_tree_2 > root->key){
-        temp_tree = temp_tree_2;
-        temp_tree_2 = temp_tree_2->left;
+    bstNode* temp_tree = nullptr;//creamos un puntero a nullptr
+    bstNode* temp_tree_2 = tree;//creamos un puntero al arbol
+    while(temp_tree_2 != nullptr){//mientras el arbol tenga algo
+      if(temp_tree_2->date < root->date){//si el arbol tiene la hora menor a la de la raiz
+        temp_tree_2 = temp_tree_2->right;//me iguala al arbol con la el arbol pero ahora desde la hoja derecha
+      }else if(temp_tree_2->date > root->date){//si el arbol es mayor a la hora de la raiz
+        temp_tree = temp_tree_2;//nullptr=a el arbol
+        temp_tree_2 = temp_tree_2->left;//y el arbol=a el arbol de la hoja izquierda
       }else{
         break;
       }
     }
-    return temp_tree;
+    return temp_tree;//retorna el arbol con el siguiente
   }
 }
 

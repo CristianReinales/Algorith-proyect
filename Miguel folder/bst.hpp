@@ -11,6 +11,7 @@ class bst{
   private:
 
       struct bstNode{
+          string m;
           keytype key;
           bstNode *left;
           bstNode *right;
@@ -30,7 +31,7 @@ class bst{
       void clear(bstNode* &root);
       void display(bstNode* root, ostream& out)const; //:)
 
-      void insert(bstNode* &root,const keytype& key); //:)
+      void insert(bstNode* &root,const keytype& key,string &m); //:)
       // bstNode* findparent(bstNode* root, keytype key) const;///********************BORRAME
       // bstNode* parn(keytype key)const;//********************
       bstNode* find(bstNode* root, keytype key)const; //:)
@@ -44,9 +45,9 @@ class bst{
         void remove(keytype key);
         bool empty(void) const; //**
         void clear(void);
-        bool find(keytype key) const;
+        string find(keytype key) const;
 
-        void insert(const keytype& key); //**
+        void insert(const keytype& key,string &m); //**
         void display(ostream& out = cout)const;
 };
 
