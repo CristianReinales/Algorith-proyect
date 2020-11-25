@@ -1,5 +1,4 @@
 #include "hash.hpp"
-#include <map>
 using namespace std;
 
 
@@ -17,12 +16,17 @@ void SeacrchAlarm(HashMap<string> temp_hasht_user);
 int ComprovarValidez(int year, int month, int day, int hour, int minuts);
 
 int main(){
-   map<char,int> MyMonthMap;
-   MyMonthMap
    // using chrono::system_clock;
    HashMap<string> temp_hasht_user;
    cout<<endl<<endl<<"Bienvenido a PersonalCalendary."<<endl<<"Recuerda que el formato para el ingreso de tus alarmas es el siguiente:"<<endl<<endl<<"Para definir el mes:"<<endl<<endl<<"    Enero = JAN    |  Febrero = FEB  |  Marzo = MAR    |  Abril = APR    |  Mayo = MAY  |  Junio = JUN    |  Julio = Jul   "<<endl<<"            Agosto = AUG   |  Septiembre = SEP  |  Octubre = OCT   |  Noviembre = NOV    |   Diciembre = DEC"<<endl<<endl<<"Para definir el dia:"<<endl<<endl<<"    Lunes = MON  |  Martes = TUE  |  Miercoles = WED   |  Jueves = THU   |  Viernes = FRI  |  Sabado = SAT | Domingo = SUN"<<endl<<endl<<"Y la hora esta definida en un formato de 24 horas y primero se ingresa la hora del dia y despues agregas los minutos."<<endl<<endl;
+
    opciones(temp_hasht_user);
+
+
+
+
+
+
   return 0;
 };
 
@@ -322,7 +326,6 @@ int ComprovarValidez(int year, int month, int day, int hour, int minuts){//si re
    time_t tt;
    tt = system_clock::to_time_t ( today );
    string temp = ctime(&tt);
-
    string::size_type sz; //alias of size_t
    //secciones.
    //Seccion 1 - comprobacion del año:
@@ -331,15 +334,10 @@ int ComprovarValidez(int year, int month, int day, int hour, int minuts){//si re
    if(year < int_year){
       return 0;
    }
+
+
    //seccion 2 - comprobacion del mes.
    string month_str = temp.substr(4,3);//Hasta aca tenemos el numero del mes separado por si solo.
-   if(month == "JAN"){
-
-   }else if(month_str == "FEB"){
-      if(month == "JAN"){
-         return 0;
-      }
-   }
    //falta poner las condiciones y la "simbolizacion de que meses son "menores" a otros"
 
 
